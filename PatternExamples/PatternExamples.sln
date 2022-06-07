@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueryBuilderSimple", "QueryBuiderSimple\QueryBuilderSimple.csproj", "{EA08C55D-2E24-4F92-B3A8-AA018701DC64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60E82377-4FC8-4039-8B70-19732B35B85C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EC7AB08-10EE-41BA-A530-97A3FC65FB00}
+	EndGlobalSection
+EndGlobal
