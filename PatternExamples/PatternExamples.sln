@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QueryBuilderSimple", "Query
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60E82377-4FC8-4039-8B70-19732B35B85C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryBuilderFluent", "QueryBuilderFluent\QueryBuilderFluent.csproj", "{FCF723CB-A045-43FC-8FD0-D1E2265B6D3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA08C55D-2E24-4F92-B3A8-AA018701DC64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCF723CB-A045-43FC-8FD0-D1E2265B6D3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCF723CB-A045-43FC-8FD0-D1E2265B6D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCF723CB-A045-43FC-8FD0-D1E2265B6D3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCF723CB-A045-43FC-8FD0-D1E2265B6D3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

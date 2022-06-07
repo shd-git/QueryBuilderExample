@@ -1,27 +1,16 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Linq.Expressions;
-using System.Reflection;
 using QueryBuilderSimple;
 
 var builder = new QueryBuilder<Persons>();
 
-string query = builder
-    .From<Persons>()
-    .Select(p => p.Id)
-    .Select(p => p.LastName)
-    .OrderBy(p => p.BirthDate)
-    .Build(true);
+builder.From<Persons>();
+builder.Select(p => p.Id);
+builder.Select(p => p.LastName);
 
-builder = new QueryBuilder<Persons>();
-builder
-    .From<Persons>()
-    .OrderBy(p => p.BirthDate)
-    .Build(true);
+builder.OrderBy(p => p.BirthDate);
 
-builder = new QueryBuilder<Persons>();
-builder
-    .From<Persons>()
-    .Build(true);
+builder.Build(true);
+
 
 Console.ReadKey();

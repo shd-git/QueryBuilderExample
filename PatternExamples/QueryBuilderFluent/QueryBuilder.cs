@@ -1,9 +1,9 @@
 ﻿using System.Linq.Expressions;
 using System.Text;
 
-namespace QueryBuilderSimple
+namespace QueryBuilderFluent
 {
-    public class QueryBuilder<TTable> 
+    public class QueryBuilder<TTable> : IQueryBuilder, IQueryBuilderSelect<TTable>
     {
         private const string TableKey = nameof(TableKey);
         private const string SelectorsKey = nameof(SelectorsKey);
@@ -20,23 +20,22 @@ namespace QueryBuilderSimple
             };
         }
 
-        public void From<T>()
-        {
-            _buildContext[TableKey] = typeof(T);
-        }
-
-        public void Select<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
+        public IQueryBuilderSelect<TTable> Select<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
         {
             var list = _buildContext[SelectorsKey] as List<Expression>;
 
             list.Add(selector);
+
+            return this;
         }
 
-        public void OrderBy<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
+        public IQueryBuilderBuild OrderBy<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
         {
             var list = _buildContext[OrderKey] as List<Expression>;
 
             list.Add(selector);
+
+            return this;
         }
 
         public string Build(bool isShouldPrint)
@@ -56,8 +55,6 @@ namespace QueryBuilderSimple
 
             return query;
 
-            #region Implementation
-
             void ProcessSelectors()
             {
                 var expressions = _buildContext[SelectorsKey] as IReadOnlyCollection<Expression>;
@@ -66,7 +63,6 @@ namespace QueryBuilderSimple
                     ? "* " 
                     : string.Join(", ", expressions.Select(GetPropertyName));
 
-                // Another example of Builder pattern 
                 stringBuilder
                     .Append("Select ")
                     .AppendLine(columnNames);
@@ -94,11 +90,13 @@ namespace QueryBuilderSimple
                         .Append(columnNames);
                 }
             }
-
-            #endregion
         }
 
-        #region Private methods
+        public IQueryBuilderSelect<TTable> From<TTable>()
+        {
+            _buildContext[TableKey] = typeof(TTable);
+            return (IQueryBuilderSelect<TTable>) this;
+        }
 
         private string GetPropertyName(Expression expression)
         {
@@ -108,7 +106,5 @@ namespace QueryBuilderSimple
 
             return memberExpression.Member.Name;
         }
-
-        #endregion
     }
 }
