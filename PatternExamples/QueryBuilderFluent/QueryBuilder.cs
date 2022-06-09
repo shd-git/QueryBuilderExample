@@ -3,6 +3,15 @@ using System.Text;
 
 namespace QueryBuilderFluent
 {
+    public static class QueryBuilder
+    {
+        public static IQueryBuilderSelect<TTable> From<TTable>()
+        {
+            var builder = new QueryBuilder<TTable>();
+            return builder.From<TTable>();
+        }
+    }
+
     public class QueryBuilder<TTable> : IQueryBuilder, IQueryBuilderSelect<TTable>
     {
         private const string TableKey = nameof(TableKey);
@@ -20,7 +29,13 @@ namespace QueryBuilderFluent
             };
         }
 
-        public IQueryBuilderSelect<TTable> Select<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
+        public IQueryBuilderSelect<TTable> From<TTable>()
+        {
+            _buildContext[TableKey] = typeof(TTable);
+            return (IQueryBuilderSelect<TTable>)this;
+        }
+
+        IQueryBuilderSelect<TTable> IQueryBuilderSelect<TTable>.Select<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
         {
             var list = _buildContext[SelectorsKey] as List<Expression>;
 
@@ -29,7 +44,7 @@ namespace QueryBuilderFluent
             return this;
         }
 
-        public IQueryBuilderBuild OrderBy<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
+        IQueryBuilderBuild IQueryBuilderOrder<TTable>.OrderBy<TPropertyType>(Expression<Func<TTable, TPropertyType>> selector)
         {
             var list = _buildContext[OrderKey] as List<Expression>;
 
@@ -54,6 +69,8 @@ namespace QueryBuilderFluent
                 Console.WriteLine(query);
 
             return query;
+
+            #region Implementation details
 
             void ProcessSelectors()
             {
@@ -90,12 +107,8 @@ namespace QueryBuilderFluent
                         .Append(columnNames);
                 }
             }
-        }
 
-        public IQueryBuilderSelect<TTable> From<TTable>()
-        {
-            _buildContext[TableKey] = typeof(TTable);
-            return (IQueryBuilderSelect<TTable>) this;
+            #endregion
         }
 
         private string GetPropertyName(Expression expression)

@@ -17,6 +17,7 @@ public class QueryBuilderFluent<TTable>
         {
             [SelectorsKey] = new List<Expression>(),
             [OrderKey] = new List<Expression>(),
+            [TableKey] = typeof(TTable)
         };
     }
 
